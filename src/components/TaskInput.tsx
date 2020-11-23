@@ -1,16 +1,15 @@
-import React, { FormEvent, useEffect, useRef, useState } from 'react';
+import React, { FormEvent, useEffect, useRef, useState } from "react";
 import { auth, firestore } from "../firebase";
-import { v4 as uuid } from 'uuid'
+import { v4 as uuid } from "uuid";
 import { useAuthState } from "react-firebase-hooks/auth";
-import firebase from 'firebase/app'
-import { io } from "socket.io-client"
+import firebase from "firebase/app";
+import { io } from "socket.io-client";
 
 interface Props {
-  listId: string
+  listId: string;
 }
 
-const TaskInput:React.FC<Props> = ({listId}) => {
-
+const TaskInput: React.FC<Props> = ({ listId }) => {
   // const textInput = useRef<any>()
   // const socketRef = useRef<any>()
 
@@ -25,33 +24,36 @@ const TaskInput:React.FC<Props> = ({listId}) => {
   //   return () => {};
   // }, []);
 
-  const [task, setTask] = useState('');
-  const taskRef = firestore.collection('tasks');
-  const [ user ] = useAuthState(auth)
-  
-  const handleSubmit = async (e:FormEvent) => {
-    e.preventDefault()
-    if (task === '') return
-    let id = uuid()
+  const [task, setTask] = useState("");
+  const taskRef = firestore.collection("tasks");
+  const [user] = useAuthState(auth);
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (task === "") return;
+    let id = uuid();
     let newTask = {
       text: task,
       id,
       complete: false,
-      date: '',
-    }
-    setTask('')
+      date: "",
+    };
+    setTask("");
     await taskRef.doc(listId).update({
-      tasks: firebase.firestore.FieldValue.arrayUnion(newTask)
-    })
-    
-  }
+      tasks: firebase.firestore.FieldValue.arrayUnion(newTask),
+    });
+  };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input  type="text" value={task} onChange={(e) => setTask(e.target.value)}/>
-      <input type="submit"/>
+      <input
+        type="text"
+        value={task}
+        onChange={(e) => setTask(e.target.value)}
+      />
+      <input type="submit" />
     </form>
   );
-}
+};
 // onKeyUp={sendKeyUpToServer} ref={textInput}
 export default TaskInput;
