@@ -11,19 +11,19 @@ interface Props {
 
 const TaskInput:React.FC<Props> = ({listId}) => {
 
-  const textInput = useRef<any>()
-  const socketRef = useRef<any>()
+  // const textInput = useRef<any>()
+  // const socketRef = useRef<any>()
 
-  const sendKeyUpToServer = (e:any) => socketRef.current.emit('message', e.target.value)
+  //const sendKeyUpToServer = (e:any) => socketRef.current.emit('message', e.target.value)
 
-  useEffect(() => {
-    socketRef.current = io('localhost:5000')
-    socketRef.current.on('message', (data:string) => {
-      if (textInput.current === null) return
-      else textInput.current.value = data
-    })
-    return () => {};
-  }, []);
+  // useEffect(() => {
+  //   socketRef.current = io('localhost:5000')
+  //   socketRef.current.on('message', (data:string) => {
+  //     if (textInput.current === null) return
+  //     else textInput.current.value = data
+  //   })
+  //   return () => {};
+  // }, []);
 
   const [task, setTask] = useState('');
   const taskRef = firestore.collection('tasks');
@@ -48,10 +48,10 @@ const TaskInput:React.FC<Props> = ({listId}) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input onKeyUp={sendKeyUpToServer} ref={textInput} type="text" value={task} onChange={(e) => setTask(e.target.value)}/>
+      <input  type="text" value={task} onChange={(e) => setTask(e.target.value)}/>
       <input type="submit"/>
     </form>
   );
 }
-
+// onKeyUp={sendKeyUpToServer} ref={textInput}
 export default TaskInput;

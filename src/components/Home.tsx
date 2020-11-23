@@ -10,14 +10,23 @@ import SignOut from './SignOut';
 const Home = () => {
   const [user] = useAuthState(auth)
   const taskRef = firestore.collection('tasks');
-  const query = taskRef.where('owner', '==', `${user.uid}`)
-  const [taskLists] = useCollectionData(query)
-  
+  const myLists = taskRef.where('owner', '==', `${user.uid}`)
+  const [taskLists] = useCollectionData(myLists)
+
+  const sharedWithMe = taskRef.where('sharedWith', 'array-contains', `${user.email}`)
+  console.log(user.email)
+  const [sharedLists] = useCollectionData(sharedWithMe)
+  console.log(sharedLists)
   return (
     <div>
       <SignOut />
       <CreateList/>
+      <h1>My Lists</h1>
       {taskLists && taskLists.map((list:any, i) => (
+        <TaskList key={list.id} list={list}/>
+      ))}
+      <h1>Shared with me</h1>
+      {sharedLists && sharedLists.map((list:any, i) => (
         <TaskList key={list.id} list={list}/>
       ))}
     </div>

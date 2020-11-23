@@ -4,10 +4,11 @@ import firebase from 'firebase/app'
 
 interface Props {
   task: any
-  listId: string
+  listId: string,
+  hideComplete: boolean
 }
 
-const TaskRow:React.FC<Props> = ({task, listId}) => {
+const TaskRow:React.FC<Props> = ({task, listId, hideComplete}) => {
   const taskRef = firestore.collection('tasks');
   
   const handleDelete = () => {
@@ -20,7 +21,6 @@ const TaskRow:React.FC<Props> = ({task, listId}) => {
     let localTask = task.id
     await taskRef.doc(listId).get().then((data) => {
       let updatedTasks = data.data()!.tasks.map((task:any) => {
-          // return console.log(task.id)
         if (task.id !== localTask) return task;
         return {...task, complete: !task.complete}
       })
@@ -31,8 +31,8 @@ const TaskRow:React.FC<Props> = ({task, listId}) => {
   }
 
   return (
-    <div>
-      <p>{task.text}</p>
+    <div style={hideComplete && task.complete ? {display: 'none'} : {display: 'inline'}}>
+      <p style={task.complete ? {textDecoration: 'line-through'} : {textDecoration: 'none'}}>{task.text}</p>
       <input onChange={handleChange} type='checkbox' checked={task.complete}/>
       <button onClick={handleDelete}>Delete</button>
     </div>

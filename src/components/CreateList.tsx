@@ -16,6 +16,7 @@ const CreateList = () => {
     await taskRef.doc(id).set({
       title: list,
       owner: user.uid,
+      sharedWith: [],
       tasks: [],
       id,
     })    
