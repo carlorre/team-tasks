@@ -4,15 +4,16 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import SignIn from "./SignIn";
 import Home from "./Home";
 import Header from "./Header";
+import { StyledMain } from "./App.styled";
 
 const App = () => {
   const [user] = useAuthState(auth);
 
   return (
-    <div>
-      <Header/>
-      <section>{user ? <Home /> : <SignIn />}</section>
-    </div>
+    <>
+      <Header />
+      <StyledMain>{user ? <Home /> : <SignIn />}</StyledMain>
+    </>
   );
 };
 

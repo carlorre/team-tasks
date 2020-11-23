@@ -4,6 +4,9 @@ import Task from "./Task";
 import { firestore } from "../firebase";
 import firebase from "firebase/app";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { StyledTaskList, StyledTaskListHeading } from "./TaskList.styled";
+import DropDownMenu from "./DropDownMenu";
+
 
 interface Props {
   list: any;
@@ -11,21 +14,11 @@ interface Props {
 
 const TaskList: React.FC<Props> = ({ list }) => {
   const taskRef = firestore.collection("tasks");
-
-  const [email, setEmail] = useState("");
   const [hideComplete, setHideComplete] = useState(false);
 
-  const handleDelete = () => {
-    taskRef.doc(list.id).delete();
-  };
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    taskRef.doc(list.id).update({
-      sharedWith: firebase.firestore.FieldValue.arrayUnion(email),
-    });
-    setEmail("");
-  };
+
+
 
   const handleDragEnd = async (props: any) => {
     if (!props.destination) return;
@@ -43,27 +36,18 @@ const TaskList: React.FC<Props> = ({ list }) => {
   };
 
   return (
-    <div>
-      <label htmlFor="toggle-complete">Hide Complete</label>
-      <input
-        onChange={() => setHideComplete(!hideComplete)}
-        id="toggle-complete"
-        type="checkbox"
-      />
-      <p>{list.title}</p>
-      <form onSubmit={handleSubmit}>
-        <input
-          placeholder="valid email adress"
-          value={email}
-          type="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input type="submit" value="Share" />
-      </form>
-      <button onClick={handleDelete}>Delete</button>
+    <StyledTaskList>
+      <StyledTaskListHeading>
+        <h1>{list.title}</h1>
+        <DropDownMenu setHideComplete={setHideComplete} hideComplete={hideComplete} list={list}/>
+      </StyledTaskListHeading>
+      
+      
+      
+     
       <TaskInput listId={list.id} />
       <DragDropContext onDragEnd={handleDragEnd}>
-        <div style={{ backgroundColor: "red", height: "400px" }}>
+        <div>
           <Droppable droppableId="tasks">
             {(provided) => (
               <div {...provided.droppableProps} ref={provided.innerRef}>
@@ -92,7 +76,7 @@ const TaskList: React.FC<Props> = ({ list }) => {
           </Droppable>
         </div>
       </DragDropContext>
-    </div>
+    </StyledTaskList>
   );
 };
 

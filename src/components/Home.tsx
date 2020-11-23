@@ -5,37 +5,31 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { auth } from "../firebase";
 import TaskList from "./TaskList";
 import CreateList from "./CreateList";
-import SignOut from "./SignOut";
+import { StyledSection } from "./Home.styled";
 
 const Home = () => {
   const [user] = useAuthState(auth);
   const taskRef = firestore.collection("tasks");
   const myLists = taskRef.where("owner", "==", `${user.uid}`);
   const [taskLists] = useCollectionData(myLists);
-  const sharedWithMe = taskRef.where(
-    "sharedWith",
-    "array-contains",
-    `${user.email}`
-  );
+  const sharedWithMe = taskRef.where("sharedWith", "array-contains",`${user.email}`);
   const [sharedLists] = useCollectionData(sharedWithMe);
+ 
 
   return (
-    <div>
-      <SignOut />
+    <StyledSection>
       <CreateList />
-      <h1>My Lists</h1>
       <div>
         {taskLists &&
           taskLists.map((list: any, i) => (
             <TaskList key={list.id} list={list} />
           ))}
       </div>
-      <h1>Shared with me</h1>
-      {sharedLists &&
+      {/* {sharedLists &&
         sharedLists.map((list: any, i) => (
           <TaskList key={list.id} list={list} />
-        ))}
-    </div>
+        ))} */}
+    </StyledSection>
   );
 };
 
