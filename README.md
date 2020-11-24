@@ -1,6 +1,6 @@
 # Team Task
 
-Team Tasks is a task list application created with React, TypeScript and Firestore.
+Team Tasks is a real time task list application created with React, TypeScript and Firestore.
 
 ## Features
 
