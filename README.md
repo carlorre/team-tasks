@@ -4,16 +4,16 @@ Team Tasks is a task list application created with React, TypeScript and Firesto
 
 ## Features
 
-Users can create task lists and delete task lists.  
-Users can add and delete items to their lists aswell as mark them as complete.  
-Users can share their lists with other users using their email adress.  
-Users can collaborate and interact with shared lists simultaneously.  
-Users can filter out completed task items.  
-Users can add due dates to their tasks.  
-Any changes made after losing internet connection will sync up with the server.  
-Users can change the order of their tasks using drag and drop.  
-Users can login using their google accounts.  
-The application is responsive and mobile friendly.  
+*Users can create task lists and delete task lists.  
+*Users can add and delete items to their lists aswell as mark them as complete.  
+*Users can share their lists with other users using their email adress.  
+*Users can collaborate and interact with shared lists simultaneously.  
+*Users can filter out completed task items.  
+*Users can add due dates to their tasks.  
+*Any changes made after losing internet connection will sync up with the server.  
+*Users can change the order of their tasks using drag and drop.  
+*Users can login using their google accounts.  
+*The application is responsive and mobile friendly.  
 
 ## Installation
 
@@ -24,10 +24,10 @@ npm start
 
 ## Roadmap
 
-Add more sign in options.  
-Add the ability to change the position of lists through drag and drop.  
-Add the ability to edit todo titles.  
-Make the distinction between shared and private lists more obvious.  
+*Add more sign in options.  
+*Add the ability to change the position of lists through drag and drop.  
+*Add the ability to edit todo titles.  
+*Make the distinction between shared and private lists more obvious.  
 
 ## Licence
 
