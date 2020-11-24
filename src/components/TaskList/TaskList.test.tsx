@@ -3,8 +3,11 @@ import { render, act } from "@testing-library/react";
 import TaskList from "./TaskList";
 
 const list = {
-  title: "Shopping",
-  id: "123",
+  id: "string",
+  owner: "string",
+  title: "string",
+  sharedWith: [],
+  tasks: [],
 };
 
 describe("App", () => {

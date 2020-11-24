@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 interface Props {
   hideComplete: boolean,
@@ -8,7 +8,7 @@ interface Props {
 export const StyledTaskContainer = styled.div`
   display: flex;
   flex-direction: column;
-   display: ${(props:Props) => props.hideComplete && props.taskComplete ? 'none' : 'flex'};
+   display: ${(props:Props) => props.hideComplete && props.taskComplete ? "none" : "flex"};
   &:hover {
     box-shadow: 0 0 2px grey;
   }
@@ -48,13 +48,12 @@ export const StyledDateInput = styled.input`
   margin-right: 10px;
   border-radius: 5px;
   width: 140px;
-  display: ${(props: DateProps) => !props.showCalendar ? 'none' : 'flex'};
+  display: ${(props: DateProps) => !props.showCalendar ? "none" : "flex"};
 `;
 
 export const StyledTaskBottomRow = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
-
 
 

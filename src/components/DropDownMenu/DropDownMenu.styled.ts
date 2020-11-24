@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const StyledDropDownContainer = styled.div`
   position: relative;
@@ -24,7 +24,7 @@ export const StyledDropDownNav = styled.nav`
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
-  visibility: ${(props: Props) => props.active ? 'visible' : 'hidden'};
+  visibility: ${(props: Props) => props.active ? "visible" : "hidden"};
   opacity: ${(props: Props) => props.active ? 1 : 0};
 `;
 
@@ -56,7 +56,6 @@ export const StyledToolBarButtons = styled.button`
 `;
 
 export const StyledButtonContainer = styled.div`
-
   display: flex;
   align-items: center;
   justify-content: center;

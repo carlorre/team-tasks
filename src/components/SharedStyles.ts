@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledDeleteButton = styled.button`
   color: rgb(65, 65, 65);

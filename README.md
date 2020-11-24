@@ -1,46 +1,55 @@
-# Getting Started with Create React App
+# Team Task
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Team Tasks is a task list application created with React, TypeScript and Firestore.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+Users can create task lists and delete task lists.
+Users can add and delete items to their lists aswell as mark them as complete.
+Users can share their lists with other users using their email adress.
+Users can collaborate and interact with shared lists simultaneously.
+Users can filter out completed task items.
+Users can add due dates to their tasks.
+Any changes made after losing internet connection will sync up with the server.
+Users can change the order of their tasks using drag and drop.
+Users can login using their google accounts.
+The application is responsive and mobile friendly.
 
-### `yarn start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+npm i
+npm start
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Roadmap
 
-### `yarn test`
+Add more sign in options.
+Add the ability to change the position of lists through drag and drop.
+Add the ability to edit todo titles.
+Make the distinction between shared and private lists more obvious.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Licence
 
-### `yarn build`
+This is free and unencumbered software released into the public domain.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Anyone is free to copy, modify, publish, use, compile, sell, or
+distribute this software, either in source code form or as a compiled
+binary, for any purpose, commercial or non-commercial, and by any
+means.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+In jurisdictions that recognize copyright laws, the author or authors
+of this software dedicate any and all copyright interest in the
+software to the public domain. We make this dedication for the benefit
+of the public at large and to the detriment of our heirs and
+successors. We intend this dedication to be an overt act of
+relinquishment in perpetuity of all present and future rights to this
+software under copyright law.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
