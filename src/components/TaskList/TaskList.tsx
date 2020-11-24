@@ -20,7 +20,6 @@ const TaskList: React.FC<Props> = ({ list }) => {
   const [hideComplete, setHideComplete] = useState(false);
 
   const handleDragEnd = async (props: any) => {
-    console.log(props);
     if (!props.destination) return;
     if (
       props.destination.index === props.source.index &&
