@@ -27,7 +27,8 @@ npm start
 - Add more sign in options.  
 - Add the ability to change the position of lists through drag and drop.  
 - Add the ability to edit task titles.  
-- Make the distinction between shared and private lists more obvious. 
+- Make the distinction between shared and private lists more obvious.  
+- Finish making tests
 
 ## Live Demo
 
