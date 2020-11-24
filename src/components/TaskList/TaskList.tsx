@@ -1,26 +1,26 @@
-import React, { FormEvent, useState } from "react";
-import TaskInput from "./TaskInput";
-import Task from "./Task";
-import { firestore } from "../firebase";
-import firebase from "firebase/app";
+import React, { useState } from "react";
+import Task from "../Task/Task";
+import { firestore } from "../../firebase";
+import TaskInput from "../TaskInput/TaskInput";
+import DropDownMenu from "../DropDownMenu/DropDownMenu";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { StyledTaskList, StyledTaskListHeading } from "./TaskList.styled";
-import DropDownMenu from "./DropDownMenu";
-
+import {
+  StyledTaskList,
+  StyledTaskListHeader,
+  StyledListHeading,
+} from "./TaskList.styled";
+import { IList, ITask } from "../../types/types";
 
 interface Props {
-  list: any;
+  list: IList;
 }
 
 const TaskList: React.FC<Props> = ({ list }) => {
   const taskRef = firestore.collection("tasks");
   const [hideComplete, setHideComplete] = useState(false);
 
-
-
-
-
   const handleDragEnd = async (props: any) => {
+    console.log(props);
     if (!props.destination) return;
     if (
       props.destination.index === props.source.index &&
@@ -37,22 +37,22 @@ const TaskList: React.FC<Props> = ({ list }) => {
 
   return (
     <StyledTaskList>
-      <StyledTaskListHeading>
-        <h1>{list.title}</h1>
-        <DropDownMenu setHideComplete={setHideComplete} hideComplete={hideComplete} list={list}/>
-      </StyledTaskListHeading>
-      
-      
-      
-     
+      <StyledTaskListHeader>
+        <StyledListHeading>{list.title}</StyledListHeading>
+        <DropDownMenu
+          setHideComplete={setHideComplete}
+          hideComplete={hideComplete}
+          list={list}
+        />
+      </StyledTaskListHeader>
       <TaskInput listId={list.id} />
       <DragDropContext onDragEnd={handleDragEnd}>
         <div>
-          <Droppable droppableId="tasks">
+          <Droppable droppableId={list.id}>
             {(provided) => (
               <div {...provided.droppableProps} ref={provided.innerRef}>
                 {list.tasks &&
-                  list.tasks.map((task: any, i: number) => (
+                  list.tasks.map((task: ITask, i: number) => (
                     <Draggable key={task.id} draggableId={task.id} index={i}>
                       {(provided) => (
                         <div

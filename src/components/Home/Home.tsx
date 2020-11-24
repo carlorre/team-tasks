@@ -1,34 +1,38 @@
 import React from "react";
-import { firestore } from "../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { firestore } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { auth } from "../firebase";
-import TaskList from "./TaskList";
-import CreateList from "./CreateList";
+import TaskList from "../TaskList/TaskList";
+import CreateList from "../CreateList/CreateList";
 import { StyledSection } from "./Home.styled";
 
-const Home = () => {
-  const [user] = useAuthState(auth);
+interface Props {
+  user: any;
+}
+
+const Home: React.FC<Props> = ({ user }) => {
   const taskRef = firestore.collection("tasks");
   const myLists = taskRef.where("owner", "==", `${user.uid}`);
   const [taskLists] = useCollectionData(myLists);
-  const sharedWithMe = taskRef.where("sharedWith", "array-contains",`${user.email}`);
+  const sharedWithMe = taskRef.where(
+    "sharedWith",
+    "array-contains",
+    `${user.email}`
+  );
   const [sharedLists] = useCollectionData(sharedWithMe);
- 
 
   return (
     <StyledSection>
-      <CreateList />
+      <CreateList user={user} />
       <div>
         {taskLists &&
-          taskLists.map((list: any, i) => (
+          taskLists.map((list: any) => <TaskList key={list.id} list={list} />)}
+      </div>
+      <div>
+        {sharedLists &&
+          sharedLists.map((list: any) => (
             <TaskList key={list.id} list={list} />
           ))}
       </div>
-      {/* {sharedLists &&
-        sharedLists.map((list: any, i) => (
-          <TaskList key={list.id} list={list} />
-        ))} */}
     </StyledSection>
   );
 };

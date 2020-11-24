@@ -5,11 +5,11 @@ export const StyledButton = styled.button`
   width: 35px;
   border: none;
   border-radius: 2px;
-  color: dimgray;
+  color: rgb(65, 65, 65);
   cursor: pointer;
   font-size: 1.2em;
   background-color: transparent;
   &:hover {
-    background-color: lightgrey;
+   opacity:0.8;
   }
 `;

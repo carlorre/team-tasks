@@ -1,9 +1,9 @@
 import React from "react";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import SignIn from "./SignIn";
-import Home from "./Home";
-import Header from "./Header";
+import SignIn from "../SignIn/SignIn";
+import Home from "../Home/Home";
+import Header from "../Header/Header";
 import { StyledMain } from "./App.styled";
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <StyledMain>{user ? <Home /> : <SignIn />}</StyledMain>
+      <StyledMain>{user ? <Home user={user} /> : <SignIn />}</StyledMain>
     </>
   );
 };
