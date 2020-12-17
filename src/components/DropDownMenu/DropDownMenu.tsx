@@ -19,6 +19,8 @@ import {
 import { useDetectOutsideClick } from "../../hooks/useDetectOutsideClick";
 import { StyledDeleteButton } from "../SharedStyles";
 import { IList } from "../../types/types";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../firebase";
 
 interface Props {
   setHideComplete: Dispatch<SetStateAction<boolean>>;
@@ -34,14 +36,16 @@ const DropDownMenu: React.FC<Props> = ({
   const dropdownRef = useRef(null);
   const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
   const taskRef = firestore.collection("tasks");
-  const [email, setEmail] = useState("");
+  const [emailToShare, setEmailToShare] = useState("");
+  const email = useAuthState(auth)[0].email;
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    if (emailToShare === email) return;
     taskRef.doc(list.id).update({
-      sharedWith: firebase.firestore.FieldValue.arrayUnion(email),
+      sharedWith: firebase.firestore.FieldValue.arrayUnion(emailToShare),
     });
-    setEmail("");
+    setEmailToShare("");
   };
 
   const handleDelete = () => {
@@ -86,9 +90,9 @@ const DropDownMenu: React.FC<Props> = ({
             <form onSubmit={handleSubmit} style={{ display: "flex" }}>
               <StyledEmailInput
                 placeholder="Share by email"
-                value={email}
+                value={emailToShare}
                 type="email"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmailToShare(e.target.value)}
               />
               <StyledButtonContainer>
                 <StyledToolBarButtons type="submit">
